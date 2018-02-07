@@ -1,12 +1,15 @@
 package identity
 
 // EventType for the BlockEvents
+//proteus:generate
 type EventType string
 
 const (
 	// EventTypeGraphCreate is the first event for all graphs
 	EventTypeGraphCreate EventType = "graph.create"
 )
+
+//go:generate proteus -p github.com/geoah/go-nimona-identity -f $GOPATH/src
 
 // Block is our BlockEvent wrapper
 // proteus:generate
