@@ -12,7 +12,7 @@ const (
 //go:generate proteus -p github.com/geoah/go-nimona-identity -f $GOPATH/src
 
 // Block is our BlockEvent wrapper
-// proteus:generate
+//proteus:generate
 type Block struct {
 	Event     BlockEvent `json:"event"`
 	Signature string     `json:"signature"`
