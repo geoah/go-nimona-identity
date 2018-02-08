@@ -21,9 +21,18 @@ message BlockEvent {
 	option (gogoproto.goproto_getters) = false;
 	option (gogoproto.typedecl) = false;
 	string author = 1;
-	string nonce = 2;
-	repeated string parents = 3;
-	string type = 4;
+	github.com.geoah.gonimonaidentity.BlockEventPayload payload = 2 [(gogoproto.nullable) = false];
+	string nonce = 3;
+	repeated string parents = 4;
+	string type = 5;
+}
+
+// BlockEventPayload is the arbitrary payload for each event
+message BlockEventPayload {
+	option (gogoproto.goproto_getters) = false;
+	option (gogoproto.typedecl) = false;
+	string type = 1;
+	bytes content = 2;
 }
 
 // EventType for the BlockEvents
