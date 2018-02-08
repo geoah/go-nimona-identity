@@ -9,27 +9,31 @@ import (
 )
 
 func main() {
-	bl := &identity.Block{
-		Event: identity.BlockEvent{
-			Author: "geoah",
-			Payload: identity.BlockEventPayload{
-				Type:    "identity",
-				Content: []byte("geoah"),
+	bls := identity.Blocks{
+		Blocks: []identity.Block{
+			identity.Block{
+				Event: identity.BlockEvent{
+					Author: "geoah",
+					Payload: identity.BlockEventPayload{
+						Type:    "identity",
+						Content: []byte("geoah"),
+					},
+					Type: string(identity.EventTypeGraphCreate),
+				},
 			},
-			Type: string(identity.EventTypeGraphCreate),
 		},
 	}
 
-	bs, err := bl.Marshal()
+	bs, err := bls.Marshal()
 	if err != nil {
 		log.Fatalf("Could not marshal block, %v", err)
 	}
 
-	ubl := &identity.Block{}
-	if err := ubl.Unmarshal(bs); err != nil {
+	ubls := &identity.Blocks{}
+	if err := ubls.Unmarshal(bs); err != nil {
 		log.Fatalf("Could not unmarshal bs, %v", err)
 	}
 
-	jbs, _ := json.MarshalIndent(ubl, "", "  ")
+	jbs, _ := json.MarshalIndent(ubls, "", "  ")
 	fmt.Println(string(jbs))
 }
